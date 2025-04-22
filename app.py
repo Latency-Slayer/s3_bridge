@@ -1,6 +1,6 @@
 from flask import Flask
 import boto3
-import json
+from flask import jsonify
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def hello_world():
     for bucket in s3.buckets.all():
         buckets[bucket.name] = bucket
 
-    return buckets
+    return jsonify(buckets)
 
 if __name__ == '__main__':
     app.run()
