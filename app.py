@@ -13,7 +13,7 @@ def hello_world():
     for bucket in s3.buckets.all():
         buckets[bucket.name] = bucket
 
-    return json.dumps(buckets)
+    return buckets
 
 if __name__ == '__main__':
     app.run()
