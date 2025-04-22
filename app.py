@@ -1,19 +1,29 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 import boto3
-from flask import jsonify
 
 app = Flask(__name__)
 
 s3 = boto3.resource('s3')
 
-@app.route('/store/s3/raw')
+@app.route('/s3/raw/upload')
 def hello_world():
-    buckets = []
+    if "file" not in request.files:
+        return jsonify({'error': 'No file found'})
 
-    for bucket in s3.buckets.all():
-        buckets.append(bucket.name)
+    file = request.files['file']
 
-    return jsonify(buckets)
+    filename = ""
+
+    if file.filename == '':
+        return jsonify({'error': 'No file found'})
+
+    s3.upload_fileobj(
+        file,
+        "latency-slayer-bucket-s3-raw",
+        filename
+    )
+
+
 
 if __name__ == '__main__':
     app.run()
