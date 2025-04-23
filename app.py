@@ -1,3 +1,6 @@
+import os
+from datetime import datetime
+
 from botocore.exceptions import ClientError
 from flask import Flask, jsonify, request
 import boto3
@@ -12,8 +15,11 @@ def hello_world():
         return jsonify({'error': 'No file found'})
 
     file = request.files['file']
+    motherboard_uuid = request.form['motherboard_uuid']
 
-    filename = "teste"
+    filename, file_extension = os.path.splitext(file.filename)
+
+    new_file_name = f"{datetime.now().strftime('%d/%m/%Y')}_{motherboard_uuid}{file_extension}"
 
     try:
         if file.filename == '':
