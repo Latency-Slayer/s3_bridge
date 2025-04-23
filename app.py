@@ -12,7 +12,7 @@ def hello_world():
 
     file = request.files['file']
 
-    filename = ""
+    filename = "teste"
 
     if file.filename == '':
         return jsonify({'error': 'No file found'})
@@ -22,6 +22,9 @@ def hello_world():
         "latency-slayer-bucket-s3-raw",
         filename
     )
+
+
+    return jsonify("Success")
 
 
 
