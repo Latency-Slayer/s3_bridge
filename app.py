@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 s3 = boto3.client('s3')
 
-@app.route('/s3/raw/upload')
+@app.route('/s3/raw/upload', methods=['POST'])
 def hello_world():
     if "file" not in request.files:
         return jsonify({'error': 'No file found'})
