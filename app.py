@@ -25,7 +25,7 @@ def hello_world():
         if file.filename == '':
             return jsonify({'error': 'No file found'})
 
-        s3.upload_fileobj(file.stream, "latency-slayer-bucket-s3-raw", new_file_name
+        s3.upload_fileobj(file.stream, "latency-slayer-bucket-s3-raw", new_file_name)
 
         return jsonify("Success")
     except ClientError as e:
