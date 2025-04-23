@@ -1,3 +1,4 @@
+from botocore.exceptions import ClientError
 from flask import Flask, jsonify, request
 import boto3
 
@@ -14,17 +15,19 @@ def hello_world():
 
     filename = "teste"
 
-    if file.filename == '':
-        return jsonify({'error': 'No file found'})
+    try:
+        if file.filename == '':
+            return jsonify({'error': 'No file found'})
 
-    s3.upload_file(
-        filename,
-        "latency-slayer-bucket-s3-raw",
-        file
-    )
+        s3.upload_file(
+            file,
+            "latency-slayer-bucket-s3-raw",
+            filename
+        )
 
-
-    return jsonify("Success")
+        return jsonify("Success")
+    except ClientError as e:
+        return jsonify({'error': str(e)})
 
 
 
