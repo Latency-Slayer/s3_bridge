@@ -17,10 +17,10 @@ def hello_world():
     if file.filename == '':
         return jsonify({'error': 'No file found'})
 
-    s3.upload_fileobj(
-        file,
+    s3.upload_file(
+        filename,
         "latency-slayer-bucket-s3-raw",
-        filename
+        file
     )
 
 
