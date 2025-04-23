@@ -19,7 +19,7 @@ def hello_world():
 
     filename, file_extension = os.path.splitext(file.filename)
 
-    new_file_name = f"{datetime.now().strftime('%d/%m/%Y')}_{motherboard_uuid}{file_extension}"
+    new_file_name = f"{datetime.now().strftime('%Y-%m-%d')}_{motherboard_uuid}{file_extension}"
 
     try:
         if file.filename == '':
