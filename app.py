@@ -4,7 +4,7 @@ import boto3
 
 app = Flask(__name__)
 
-s3 = boto3.resource('s3')
+s3 = boto3.client('s3')
 
 @app.route('/s3/raw/upload')
 def hello_world():
@@ -19,11 +19,7 @@ def hello_world():
         if file.filename == '':
             return jsonify({'error': 'No file found'})
 
-        s3.upload_file(
-            file,
-            "latency-slayer-bucket-s3-raw",
-            filename
-        )
+        s3.upload_file(file.stream, filename, filename)
 
         return jsonify("Success")
     except ClientError as e:
