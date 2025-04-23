@@ -16,10 +16,12 @@ def hello_world():
 
     file = request.files['file']
     motherboard_uuid = request.form['motherboard_uuid']
+    legal_name = request.form['legal_name']
+    registration_number = request.form['registration_number']
 
     filename, file_extension = os.path.splitext(file.filename)
 
-    new_file_name = f"{datetime.now().strftime('%Y-%m-%d')}_{motherboard_uuid}{file_extension}"
+    new_file_name = f"{datetime.now().strftime('%Y-%m-%d')}_{motherboard_uuid}_{legal_name}_{registration_number}{file_extension}"
 
     try:
         if file.filename == '':
