@@ -21,7 +21,7 @@ def hello_world():
 
     filename, file_extension = os.path.splitext(file.filename)
 
-    new_file_name = f"{datetime.now().strftime('%Y-%m-%d %H-%M-%S')}_{motherboard_uuid}_{legal_name}_{registration_number}{file_extension}"
+    new_file_name = f"{datetime.now().strftime("%Y%m%d%H%M%S")}_{motherboard_uuid}_{legal_name}_{registration_number}{file_extension}"
 
     try:
         if file.filename == '':
