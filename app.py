@@ -23,6 +23,8 @@ def hello_world():
 
     new_file_name = f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{motherboard_uuid}_{legal_name}_{registration_number}{file_extension}"
 
+    new_file_name = new_file_name.replace(" ", "-")
+
     try:
         if file.filename == '':
             return jsonify({'error': 'No file found'})
