@@ -5,7 +5,7 @@ LOCAL=$(git rev-parse main)
 REMOTE=$(git rev-parse origin/main)
 
 if [ "$LOCAL" != "$REMOTE" ]; then
-    echo "Atualizando aplicação"
+    echo "Atualizando s3-bridge"
     git pull
 
     # Removendo imagem docker
