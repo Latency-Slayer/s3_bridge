@@ -50,7 +50,7 @@ def send_process_data():
         if not data:
             return jsonify({'error': 'No JSON provided'}), 400
 
-        new_file_name = f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{motherboard_uuid}_{legal_name}_{registration_number}.json"
+        new_file_name = f"process-data/{datetime.now().strftime('%Y%m%d%H%M%S')}_{motherboard_uuid}_{legal_name}_{registration_number}.json"
 
         json_bytes = json.dumps(data["process_json"]).encode('utf-8')
 
