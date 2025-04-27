@@ -52,7 +52,8 @@ def send_process_data():
 
         new_file_name = f"process-data/{datetime.now().strftime('%Y%m%d%H%M%S')}_{motherboard_uuid}_{legal_name}_{registration_number}.json"
 
-        json_bytes = json.dumps(data["process_json"]).encode('utf-8')
+        json_bytes = json.dumps(data["process_json"], indent=4).encode('utf-8')
+
 
         # Envia o arquivo JSON para o bucket
         s3.put_object(Bucket="latency-slayer-raw", Key=new_file_name, Body=json_bytes, ContentType='application/json')
