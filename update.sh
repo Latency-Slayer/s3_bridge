@@ -14,7 +14,7 @@ if [ "$LOCAL" != "$REMOTE" ]; then
     docker rmi flask-s3
 
     docker build -t flask-s3 .
-    docker run --name flask-s3 -p 5000:5000 --restart unless-stopped flask-s3
+    docker run --name flask-s3 -p 5000:5000 --restart always flask-s3
 
     echo "Deploy do s3-bridge concluído"
 fi
