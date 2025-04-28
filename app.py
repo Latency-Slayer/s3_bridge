@@ -55,8 +55,6 @@ def send_process_data():
 
         json_bytes = json.dumps(data["process_json"], indent=4).encode('utf-8')
 
-
-        # Envia o arquivo JSON para o bucket
         s3.put_object(Bucket="latency-slayer-raw", Key=new_file_name, Body=json_bytes, ContentType='application/json')
 
         return jsonify({'message': 'JSON file uploaded successfully!'})
