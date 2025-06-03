@@ -50,7 +50,7 @@ def send_process_data():
         if not data:
             return jsonify({'error': 'No JSON provided'}), 400
 
-        new_file_name = f"{registration_number}/{motherboard_uuid}/{datetime.now().strftime('%Y-%m-%d')}/process-data/{datetime.now().strftime('%Y%m%d%H%M%S')}_{motherboard_uuid}_{legal_name}_{registration_number}.json"
+        new_file_name = f"{registration_number}/{motherboard_uuid}/{datetime.now().strftime('%Y-%m-%d')}/process-data/{datetime.now().strftime('%Y-%m-%d')}_{motherboard_uuid}_{legal_name}_{registration_number}.json"
         new_file_name = new_file_name.replace(" ", "-")
 
         json_bytes = json.dumps(data["process_json"], indent=4).encode('utf-8')
@@ -74,7 +74,7 @@ def send_connections_data():
         if not data:
             return jsonify({'error': 'No JSON provided'}), 400
 
-        new_file_name = f"{registration_number}/{motherboard_uuid}/{datetime.now().strftime('%Y-%m-%d')}/connections-data/{datetime.now().strftime('%Y%m%d%H%M%S')}_{motherboard_uuid}_{legal_name}_{registration_number}.json"
+        new_file_name = f"{registration_number}/{motherboard_uuid}/{datetime.now().strftime('%Y-%m-%d')}/connections-data/{datetime.now().strftime('%Y-%m-%dT%H:%M:%S')}_{motherboard_uuid}_{legal_name}_{registration_number}.json"
         new_file_name = new_file_name.replace(" ", "-")
 
         json_bytes = json.dumps(data["connections_json"], indent=4).encode('utf-8')
