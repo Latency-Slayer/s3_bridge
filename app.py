@@ -74,7 +74,7 @@ def send_connections_data():
         if not data:
             return jsonify({'error': 'No JSON provided'}), 400
 
-        new_file_name = f"{registration_number}/{motherboard_uuid}/{datetime.now().strftime('%Y-%m-%d')}/connections-data/{datetime.now().strftime('%Y-%m-%dT%H:%M:%S')}_{motherboard_uuid}_{legal_name}_{registration_number}.json"
+        new_file_name = f"{registration_number}/{motherboard_uuid}/{datetime.now().strftime('%Y-%m-%d')}/connections-data/{datetime.now().strftime('%Y-%m-%dT%H-%M-%S')}_{motherboard_uuid}_{legal_name}_{registration_number}.json"
         new_file_name = new_file_name.replace(" ", "-")
 
         json_bytes = json.dumps(data["connections_json"], indent=4).encode('utf-8')
@@ -82,8 +82,8 @@ def send_connections_data():
         s3.put_object(Bucket="latency-raw", Key=new_file_name, Body=json_bytes, ContentType='application/json')
 
         return jsonify({'message': 'JSON file uploaded successfully!'})
-
     except Exception as e:
+        print(e)
         return jsonify({'error': f'Error sending JSON to bucket: {str(e)}'}), 500
 
 if __name__ == '__main__':
